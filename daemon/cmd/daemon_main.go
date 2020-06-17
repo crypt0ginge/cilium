@@ -1569,9 +1569,10 @@ func initKubeProxyReplacementOptions() (strict bool) {
 	}
 
 	if option.Config.KubeProxyReplacement == option.KubeProxyReplacementDisabled {
-		log.Infof("Auto-disabling %q, %q, %q, %q features", option.EnableNodePort,
-			option.EnableExternalIPs, option.EnableHostReachableServices,
-			option.EnableHostPort)
+		log.Infof("Auto-disabling %q, %q, %q, %q, %q features",
+			option.EnableNodePort, option.EnableExternalIPs,
+			option.EnableHostReachableServices, option.EnableHostPort,
+			option.EnableSessionAffinity)
 
 		disableNodePort()
 		option.Config.EnableHostReachableServices = false
@@ -1590,9 +1591,10 @@ func initKubeProxyReplacementOptions() (strict bool) {
 	if option.Config.KubeProxyReplacement == option.KubeProxyReplacementProbe ||
 		option.Config.KubeProxyReplacement == option.KubeProxyReplacementStrict {
 
-		log.Infof("Auto-enabling %q, %q, %q, %q features", option.EnableNodePort,
-			option.EnableExternalIPs, option.EnableHostReachableServices,
-			option.EnableHostPort)
+		log.Infof("Trying to auto-enable %q, %q, %q, %q, %q features",
+			option.EnableNodePort, option.EnableExternalIPs,
+			option.EnableHostReachableServices, option.EnableHostPort,
+			option.EnableSessionAffinity)
 
 		option.Config.EnableHostPort = true
 		option.Config.EnableNodePort = true
